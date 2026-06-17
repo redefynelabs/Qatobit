@@ -18,7 +18,7 @@ const Waitlist = () => {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-white">
       {/* Left — content */}
-      <div className="flex flex-col justify-between lg:w-[52%] px-6 sm:px-10 lg:px-16 py-8 lg:py-10">
+      <div className="flex flex-col justify-between lg:w-[52%] px-6 sm:px-10 lg:px-16 py-8 lg:py-10 order-2 lg:order-1">
         {/* Logo */}
         <div>
           <Link href="/">
@@ -117,7 +117,9 @@ const Waitlist = () => {
             <span className="hidden sm:block text-neutral-300">·</span>
 
             <Link
-              href="/methodology"
+              href="/document/The%20QSI%20Methodology_%20Construction%2C%20Discipline%2C%20and%20Governance.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-inter text-sm text-primary underline underline-offset-2 hover:opacity-80 transition-opacity"
             >
               Read the methodology
@@ -132,7 +134,7 @@ const Waitlist = () => {
       </div>
 
       {/* Right — illustration */}
-      <div className="lg:w-[48%] min-h-75 lg:min-h-screen p-3 sm:p-4">
+      <div className="lg:w-[48%] h-72 sm:h-96 lg:h-auto lg:min-h-screen p-3 sm:p-4 order-1 lg:order-2">
         <div className="relative h-full w-full rounded-lg overflow-hidden">
           <Image
             src="/assets/bot_image1.png"

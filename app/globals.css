@@ -81,6 +81,12 @@ body {
 }
 
 
+@keyframes border-beam-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);

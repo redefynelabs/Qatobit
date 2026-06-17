@@ -11,7 +11,7 @@ const Footer = () => {
 
       {/* Vertical animated lines */}
       <div className="absolute inset-0 z-10 flex justify-between px-4 sm:px-6 md:px-10 pointer-events-none">
-        {Array.from({ length: 8 }).map((_, i) => (
+        {Array.from({ length: typeof window !== "undefined" && window.innerWidth < 640 ? 4 : 8 }).map((_, i) => (
           <div key={i} className="relative h-full w-px overflow-hidden bg-orange-500/10">
             <motion.div
               className="absolute left-0 h-48 w-px bg-orange-300/70"
@@ -44,9 +44,9 @@ const Footer = () => {
               you commit to one.
             </p>
 
-            <button className="mt-6 sm:mt-8 py-3 sm:py-4 w-full max-w-xl rounded-lg bg-black font-inter text-white text-sm sm:text-base shadow-[0_0_40px_rgba(255,120,40,0.5)] hover:shadow-[0_0_60px_rgba(255,120,40,0.6)] transition-shadow">
+            <Link href={'/join-waitlist'} className="mt-6 sm:mt-8 py-3 sm:py-4 w-full max-w-xl rounded-lg bg-black font-inter text-white text-sm sm:text-base shadow-[0_0_40px_rgba(255,120,40,0.5)] hover:shadow-[0_0_60px_rgba(255,120,40,0.6)] transition-shadow">
               Start Investing
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -101,7 +101,7 @@ const Footer = () => {
               financial advisor before investing.
             </p>
 
-            <p className="mt-6 text-base text-white/25">
+            <p className=" hidden md:block mt-6 text-base text-white/25">
               © 2026 - All rights reserved by Qatobit, Designed by Sanjai K
             </p>
           </div>
@@ -110,7 +110,7 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-8 sm:gap-10">
             {FooterLinks.map((section) => (
               <div key={section.name}>
-                <h4 className="mb-4 sm:mb-6 text-sm sm:text-lg font-medium text-white">
+                <h4 className="mb-4 sm:mb-6 sm:text-lg font-medium text-white">
                   {section.name}
                 </h4>
                 <ul className="space-y-3 sm:space-y-4">
@@ -119,7 +119,7 @@ const Footer = () => {
                       <Link
                         href={link.href}
                         target={link.href.startsWith("http") ? "_blank" : "_self"}
-                        className="text-xs sm:text-base text-white/40 transition-colors hover:text-primary"
+                        className=" sm:text-base text-white/40 transition-colors hover:text-primary"
                       >
                         {link.name}
                       </Link>
@@ -128,6 +128,12 @@ const Footer = () => {
                 </ul>
               </div>
             ))}
+          </div>
+
+          <div>
+            <p className=" md:hidden block mt-6 text-base text-white/25">
+              © 2026 - All rights reserved by Qatobit, Designed by Sanjai K
+            </p>
           </div>
         </div>
       </div>

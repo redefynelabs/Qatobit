@@ -8,19 +8,19 @@ export const FooterLinks = [
       },
       {
         name: "Company",
-        href: "/about",
+        href: "/coming-soon",
       },
       {
         name: "Products",
-        href: "/products/indices",
+        href: "/coming-soon",
       },
       {
         name: "Learn",
-        href: "/learn/blog",
+        href: "/coming-soon",
       },
       {
         name: "FAQs",
-        href: "/faqs",
+        href: "/coming-soon",
       },
       {
         name: "Brand Kit",

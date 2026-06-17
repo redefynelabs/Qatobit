@@ -8,15 +8,15 @@ export const NavLinks = [
     links: [
       {
         name: "About",
-        href: "/company/about",
+        href: "/coming-soon",
       },
       {
         name: "Team",
-        href: "/company/team",
+        href: "/coming-soon",
       },
       {
         name: "Press",
-        href: "/company/press",
+        href: "/coming-soon",
       },
     ],
   },
@@ -25,19 +25,19 @@ export const NavLinks = [
     links: [
       {
         name: "Indices",
-        href: "/products/indices",
+        href: "/coming-soon",
       },
       {
         name: "SIP",
-        href: "/products/sip",
+        href: "/coming-soon",
       },
       {
         name: "Trade",
-        href: "/products/trade",
+        href: "/coming-soon",
       },
       {
         name: "VIP",
-        href: "/products/vip",
+        href: "/coming-soon",
       },
     ],
   },
@@ -46,15 +46,15 @@ export const NavLinks = [
     links: [
       {
         name: "Blog",
-        href: "/learn/blog",
+        href: "/coming-soon",
       },
       {
         name: "Glossary",
-        href: "/learn/glossary",
+        href: "/coming-soon",
       },
       {
         name: "FAQs",
-        href: "/faqs",
+        href: "/coming-soon",
       },
     ],
   },

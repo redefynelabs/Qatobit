@@ -35,7 +35,7 @@ const Process = () => {
 
       {/* Curved bottom arc */}
       <Image
-        src="/assets/curve.svg"
+        src="/assets/Home/curve.svg"
         alt=""
         width={1346}
         height={120}
@@ -100,7 +100,7 @@ const Process = () => {
                   className="origin-left shrink-0 mx-2 xl:mx-4 flex items-center"
                 >
                   <Image
-                    src="/assets/arrow.png"
+                    src="/assets/Home/arrow.png"
                     alt="next step"
                     width={130}
                     height={50}

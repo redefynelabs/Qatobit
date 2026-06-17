@@ -28,8 +28,7 @@ const faqs = [
   },
   {
     question: "What is the minimum investment?",
-    answer:
-      "You can start investing with as little as ₹2,000.",
+    answer: "You can start investing with as little as ₹2,000.",
   },
   {
     question: "Can I run a SIP into a Crypto Index?",
@@ -65,9 +64,7 @@ function AccordionItem({
         onClick={onClick}
         className="flex w-full items-center justify-between py-6 text-left"
       >
-        <span className="text-lg font-medium text-black">
-          {question}
-        </span>
+        <span className="text-lg font-medium text-black">{question}</span>
 
         <span className="shrink-0 text-primary">
           {open ? <Minus size={18} /> : <Plus size={18} />}
@@ -164,35 +161,37 @@ const FAQ = () => {
             </h2>
 
             <p className="mt-6 max-w-lg text-base text-white/90 md:text-lg">
-              Eight questions that come up most often. The full FAQ hub
-              goes deeper.
+              Eight questions that come up most often. The full FAQ hub goes
+              deeper.
             </p>
           </div>
 
           {/* Robot */}
-<div
-  className="
-  relative
+          <div
+            className="
+  pl-6
+  pt-10
     md:absolute
     md:right-20
     bottom-0
     z-20
     pointer-events-none
   "
->
-  <Image
-    src="/assets/qatobot.png"
-    alt="Qatobot"
-    width={1026}
-    height={1143}
-    priority
-    className="
+          >
+            <Image
+              src="/assets/qatobot.png"
+              alt="Qatobot"
+              width={1026}
+              height={1143}
+              priority
+              className="
       w-auto
-      h-[400px]
+      h-[200px]
+      md:h-[400px]
       object-contain
     "
-  />
-</div>
+            />
+          </div>
         </div>
 
         {/* FAQ List */}
@@ -203,11 +202,7 @@ const FAQ = () => {
               question={faq.question}
               answer={faq.answer}
               open={openIndex === index}
-              onClick={() =>
-                setOpenIndex(
-                  openIndex === index ? -1 : index
-                )
-              }
+              onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
             />
           ))}
         </div>

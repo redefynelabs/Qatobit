@@ -34,7 +34,7 @@ const Hero = () => {
             {/* Torch text */}
             <div className="relative pr-2">
               <div
-                className="absolute inset-y-1 -left-4 right-0 rounded-r-xl pointer-events-none"
+                className="absolute -inset-y-1 -left-4 right-0 rounded-r-xl pointer-events-none"
                 style={{
                   background:
                     "radial-gradient(ellipse 85% 80% at 0% 50%, rgba(255,97,0,0.45), transparent 70%)",
@@ -57,7 +57,8 @@ const Hero = () => {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4  sm:w-auto items-start">
             <PrimaryButton text="Explore the Crypto Indices" className="w-full sm:w-auto justify-center" href="/join-waitlist" />
-            <PrimaryButton text="Read the Methodology" className="bg-[#282828] w-full sm:w-auto justify-center" />
+            <PrimaryButton  href="/document/The%20QSI%20Methodology_%20Construction%2C%20Discipline%2C%20and%20Governance.pdf"
+              target="_blank" text="Read the Methodology" className="bg-[#282828] w-full sm:w-auto justify-center" />
           </div>
 
         </div>

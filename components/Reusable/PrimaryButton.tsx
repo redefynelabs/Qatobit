@@ -7,6 +7,7 @@ interface PrimaryButtonProps {
   text: string;
   onClick?: () => void;
   href?: string;
+  target?: string;
   className?: string;
 }
 
@@ -14,6 +15,7 @@ const PrimaryButton = ({
   text,
   onClick,
   href,
+  target,
   className,
 }: PrimaryButtonProps) => {
   const buttonClasses = twMerge(
@@ -28,7 +30,7 @@ const PrimaryButton = ({
 
   if (href) {
     return (
-      <Link href={href} className={buttonClasses}>
+      <Link href={href} target={target} className={buttonClasses}>
         {text}
       </Link>
     );
