@@ -8,19 +8,93 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: #FF6100;
+
+  --font-grift: var(--font-grift);
+  --font-inter: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-grift), var(--font-inter), sans-serif;
+  letter-spacing: -0.05rem;
+}
+
+.font-inter {
+  letter-spacing: -0.02em;
+}
+
+.glass-pill-indicator {
+  background:
+    linear-gradient(155deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.07) 52%,
+      rgba(248, 252, 255, 0.03) 100%
+    ),
+    radial-gradient(circle at 84% 84%, rgba(176, 208, 255, 0.12) 0%, rgba(176, 208, 255, 0) 46%);
+  backdrop-filter: blur(140px) saturate(180%) contrast(1.10) brightness(1.02);
+  -webkit-backdrop-filter: blur(140px) saturate(180%) contrast(1.10) brightness(1.02);
+  border: 0;
+  box-shadow:
+    0 8px 18px rgba(78, 96, 122, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(20, 32, 50, 0.08);
+}
+
+/* Glass button — nav pills and CTA buttons */
+.glass-button {
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.045) 52%,
+      rgba(255, 255, 255, 0.015) 100%
+    ),
+    radial-gradient(circle at 84% 84%, rgba(176, 208, 255, 0.09) 0%, rgba(176, 208, 255, 0) 46%),
+    radial-gradient(circle at 12% 8%, rgba(255, 230, 200, 0.05) 0%, rgba(255, 230, 200, 0) 42%);
+  border: 0;
+  box-shadow:
+    0 10px 22px rgba(78, 96, 122, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.30),
+    inset 0 -1px 0 rgba(20, 32, 50, 0.08);
+}
+
+.glass-button:hover {
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(255, 255, 255, 0.06) 52%,
+      rgba(255, 255, 255, 0.02) 100%
+    ),
+    radial-gradient(circle at 84% 84%, rgba(176, 208, 255, 0.12) 0%, rgba(176, 208, 255, 0) 46%),
+    radial-gradient(circle at 12% 8%, rgba(255, 230, 200, 0.08) 0%, rgba(255, 230, 200, 0) 42%);
+}
+
+/* Glass card — Figma-style glass effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
