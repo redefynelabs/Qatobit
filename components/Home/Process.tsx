@@ -168,7 +168,7 @@ const Process = () => {
                   className="my-12"
                 >
                   <Image
-                    src="/assets/arrow.png"
+                    src="/assets/Home/arrow.png"
                     alt="next step"
                     width={130}
                     height={50}
