@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+.recharts-wrapper, .recharts-wrapper svg { outline: none !important; }
+.scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

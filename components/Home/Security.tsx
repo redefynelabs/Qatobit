@@ -50,7 +50,7 @@ function FeatureCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="relative rounded-2xl bg-neutral-900 border border-primary overflow-hidden p-5 md:p-7"
+      className="relative rounded-2xl bg-neutral-900 border border-primary overflow-hidden p-3 sm:p-5 md:p-7"
     >
       {/* Full dot grid — gray */}
       <div
@@ -74,16 +74,14 @@ function FeatureCard({
       ))}
 
       {/* Content */}
-      <div className="relative z-10">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="text-primary text-sm  font-medium">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <h3 className="text-white font-medium text-lg md:text-xl leading-snug">
-            {title}
-          </h3>
-        </div>
-        <p className="font-inter text-neutral-400 text-base leading-relaxed">
+      <div className="relative z-10 flex flex-col gap-1.5 sm:gap-2">
+        <span className="text-primary text-xs sm:text-sm font-medium">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <h3 className="text-white font-medium text-sm sm:text-lg md:text-xl leading-snug">
+          {title}
+        </h3>
+        <p className="font-inter text-neutral-400 text-xs sm:text-base leading-relaxed">
           {description}
         </p>
       </div>
@@ -95,21 +93,23 @@ export default function SecuritySection() {
   return (
     <section className="py-14 md:py-20">
       {/* Header */}
-      <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 mb-16 lg:mb-20 px-6 md:px-10">
-        <div className="space-y-5">
+      <div className="flex flex-col lg:flex-row items-start lg:items-end  justify-between gap-4 md:gap-8 mb-16 lg:mb-20 px-6 md:px-10">
+        <div className=" space-y-3 md:space-y-5 flex flex-col items-center justify-center md:items-start md:justify-start text-center md:text-start">
           <div className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-white font-medium text-sm">
             <span className="h-2 w-2 bg-white" />
             Security
           </div>
 
-          <h2 className="text-4xl md:text-5xl xl:text-6xl font-medium tracking-tighter">
+          <h2 className="text-3xl md:text-5xl xl:text-6xl font-medium tracking-tighter max-w-2xl">
             The question every crypto investor
-            <br />
             has learned to ask.
           </h2>
+        <p className="font-inter text-sm lg:text-lg text-neutral-600  max-w-xs lg:max-w-sm shrink-0 md:hidden">
+          Not whether the market can fall. Whether the platform can. 
+          The first is market risk, and it stays yours. The second has an architecture.
+        </p>
         </div>
-
-        <p className="font-inter text-base lg:text-lg text-neutral-600 lg:text-right max-w-xs lg:max-w-sm shrink-0">
+        <p className=" hidden md:block font-inter text-sm lg:text-lg text-neutral-600 lg:text-right max-w-xs lg:max-w-sm shrink-0 mb-4">
           Not whether the market can fall. Whether the platform can. 
           The first is market risk, and it stays yours. The second has an architecture.
         </p>
@@ -124,15 +124,15 @@ export default function SecuritySection() {
           {/* Cards */}
           <div className="flex-1 flex flex-col gap-4">
             {/* 2×2 top cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {features.slice(0, 4).map((f, i) => (
                 <FeatureCard key={f.title} {...f} index={i} delay={i * 0.1} />
               ))}
-            </div>
-
-            {/* 5th card centered */}
-            <div className="sm:w-1/2 sm:mx-auto">
-              <FeatureCard {...features[4]} index={4} delay={0.4} />
+              <div className="col-span-2 sm:col-span-1 sm:col-start-1 lg:col-span-2 lg:flex lg:justify-center">
+                <div className="lg:w-1/2">
+                  <FeatureCard {...features[4]} index={4} delay={0.4} />
+                </div>
+              </div>
             </div>
           </div>
 

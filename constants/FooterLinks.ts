@@ -60,7 +60,7 @@ export const FooterLinks = [
         href: "https://www.reddit.com/r/qatobit/",
       },
       {
-        name: "Coin Marketcap",
+        name: "Coin MarketCap",
         href: "https://coinmarketcap.com/currencies/qatobit/",
       }
     ],

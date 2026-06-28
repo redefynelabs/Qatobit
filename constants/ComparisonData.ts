@@ -42,7 +42,7 @@ export const comparisonData: ComparisonRow[] = [
   },
   {
     question: "In-app guidance",
-    qatobit: "QAI. Market data and methodology, scoped to your holdings.",
+    qatobit: "Qai. Market data and methodology, scoped to your holdings.",
     tradingFirst: "Price alerts.",
   },
 ];

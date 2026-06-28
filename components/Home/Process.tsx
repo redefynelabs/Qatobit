@@ -13,7 +13,7 @@ const processSteps = [
   },
   {
     title: "COMPLETE KYC AND DEPOSIT",
-    image: "/assets/Home/Process/kyc_deposit.png",
+    image: "/assets/Home/Process/deposit.png",
     description:
       "Verify your identity with PAN and Aadhaar. Deposit INR from your bank account. Minimum ₹200.",
   },
@@ -44,21 +44,25 @@ const Process = () => {
 
       <div className="relative z-10 mx-auto">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 mb-16 lg:mb-20">
-          <div className="space-y-5">
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-4 md:gap-8 mb-16 lg:mb-20">
+          <div className="space-y-5 flex flex-col items-center justify-center md:items-start md:justify-start text-center md:text-start w-full">
             <div className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-white font-medium text-sm">
               <span className="h-2 w-2  bg-white" />
               Getting Started
             </div>
 
-            <h2 className="text-4xl md:text-5xl xl:text-6xl font-medium">
+            <h2 className="text-3xl md:text-5xl xl:text-6xl font-medium">
               You do three things.
               <br />
               Our index does the rest.
             </h2>
+          <p className="md:hidden font-inter text-base lg:text-lg text-neutral-600 lg:text-right max-w-xs lg:max-w-sm shrink-0">
+            Sign up, verify, deposit, choose an index.
+            <br />
+            The methodology takes it from there.
+          </p>
           </div>
-
-          <p className="font-inter text-base lg:text-lg text-neutral-600 lg:text-right max-w-xs lg:max-w-sm shrink-0">
+          <p className=" hidden md:block font-inter text-base lg:text-lg text-neutral-600 lg:text-right max-w-xs lg:max-w-sm shrink-0 ">
             Sign up, verify, deposit, choose an index.
             <br />
             The methodology takes it from there.
@@ -136,46 +140,30 @@ const Process = () => {
         </div>
 
         {/* Steps — Mobile */}
-        <div className="lg:hidden flex flex-col items-center">
+        <div className="lg:hidden flex flex-col gap-2">
           {processSteps.map((step, index) => (
-            <div key={step.title} className="flex flex-col items-center w-full">
+            <div key={step.title}>
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex flex-col items-center text-center w-full"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex items-center gap-4"
               >
                 <Image
                   src={step.image}
                   alt={step.title}
-                  width={360}
-                  height={700}
-                  className="w-full max-w-55 sm:max-w-65 h-auto"
+                  width={200}
+                  height={400}
+                  className="w-28 sm:w-36 h-auto shrink-0"
                 />
-                <h3 className="mt-5 text-xl font-semibold">{step.title}</h3>
-                <p className="font-inter text-neutral-600 mt-3 max-w-70 leading-relaxed text-sm">
-                  {step.description}
-                </p>
+                <div>
+                  <span className="text-primary text-xs font-medium">{String(index + 1).padStart(2, "0")}</span>
+                  <h3 className="text-base sm:text-lg font-semibold mt-0.5 mb-2">{step.title}</h3>
+                  <p className="font-inter text-neutral-600 text-xs sm:text-sm leading-relaxed">{step.description}</p>
+                </div>
               </motion.div>
 
-              {index < processSteps.length - 1 && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                  className="my-12"
-                >
-                  <Image
-                    src="/assets/Home/arrow.png"
-                    alt="next step"
-                    width={130}
-                    height={50}
-                    className="w-20 h-auto rotate-90"
-                  />
-                </motion.div>
-              )}
             </div>
           ))}
         </div>

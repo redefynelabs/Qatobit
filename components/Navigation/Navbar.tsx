@@ -21,6 +21,7 @@ const Navbar = () => {
     const [pillStyle, setPillStyle] = useState<PillStyle>({ left: 0, width: 0, top: 0, height: 0, visible: false });
     const [isOpen, setIsOpen] = useState(false);
     const [mobileOpenIdx, setMobileOpenIdx] = useState<number | null>(null);
+    const [scrolled, setScrolled] = useState(false);
     const navRef = useRef<HTMLDivElement>(null);
     const itemRefs = useRef<(HTMLElement | null)[]>([]);
 
@@ -55,8 +56,22 @@ const Navbar = () => {
         setMobileOpenIdx(null);
     }, [pathname]);
 
+    const [hidden, setHidden] = useState(false);
+
+    useEffect(() => {
+        let lastY = window.scrollY;
+        const onScroll = () => {
+            const y = window.scrollY;
+            setScrolled(y > 50);
+            setHidden(y > lastY && y > 80);
+            lastY = y;
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+
     return (
-        <nav className=" z-50 absolute top-0 left-0 w-full bg-transparent">
+        <nav className={`z-50 fixed top-0 left-0 w-full transition-all duration-300 ${hidden ? "-translate-y-full" : "translate-y-0"} ${scrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent"}`}>
             <div className="flex items-center justify-between px-10 py-4 ">
                 <Link href="/">
                     <Image
@@ -112,10 +127,10 @@ const Navbar = () => {
                                     <ChevronDown size={16} />
                                 </button>
 
-                                <div className="glass-pill-indicator absolute left-0 top-full z-50 mt-2 min-w-30 rounded-xl p-2 opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                                <div className="absolute left-0 top-full z-50 mt-2 min-w-40 rounded-xl p-2 opacity-0 invisible translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 bg-[#111111] border border-white/10 shadow-xl backdrop-blur-md">
                                     {item.links!.map((subLink) => (
                                         <Link
-                                            key={subLink.href}
+                                            key={subLink.name}
                                             href={subLink.href}
                                             className="block rounded-lg px-4 py-2 text-sm text-white hover:text-primary transition-colors"
                                         >
@@ -176,7 +191,7 @@ const Navbar = () => {
                                     <div className="pl-4 pb-2 flex flex-col">
                                         {item.links!.map((subLink) => (
                                             <Link
-                                                key={subLink.href}
+                                                key={subLink.name}
                                                 href={subLink.href}
                                                 className="block px-4 py-2.5 text-sm text-white/80 hover:text-primary rounded-lg transition-colors"
                                             >

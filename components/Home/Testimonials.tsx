@@ -33,38 +33,96 @@ function MarqueeColumn({ reverse = false }: { reverse?: boolean }) {
   );
 }
 
+function HorizontalRow({ reverse = false }: { reverse?: boolean }) {
+  const controls = useAnimation();
+
+  const start = () =>
+    controls.start({
+      x: reverse ? ["-50%", "0%"] : ["0%", "-50%"],
+      transition: { duration: 40, repeat: Infinity, repeatType: "loop", ease: "linear" },
+    });
+
+  useEffect(() => { start(); }, []);
+
+  return (
+    <div className="overflow-hidden" onTouchStart={() => controls.stop()} onTouchEnd={() => start()}>
+      <motion.div animate={controls} className="flex gap-4" style={{ width: "max-content" }}>
+        {[...testimonials, ...testimonials].map((item, index) => (
+          <div key={index} className="w-72 shrink-0 h-52 overflow-hidden">
+            <div className="h-full rounded-3xl border border-white/5 bg-[#211E1D] p-5 font-inter flex flex-col">
+              <div className="flex items-center gap-3 shrink-0">
+                <img src={item.image as string} alt={item.name} className="h-10 w-10 rounded-full object-cover" />
+                <div>
+                  <p className="text-sm font-medium text-white tracking-tight">{item.name}</p>
+                  <p className="text-xs text-gray-500">{item.company}</p>
+                </div>
+              </div>
+              <p className="mt-3 text-gray-400 text-xs leading-relaxed tracking-tight line-clamp-5">"{item.comment}"</p>
+            </div>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+function HorizontalMarquee() {
+  return (
+    <div className="flex flex-col gap-4">
+      <HorizontalRow />
+      <HorizontalRow reverse />
+    </div>
+  );
+}
+
 const Testimonials = () => {
   return (
-    <section className="overflow-hidden px-5 py-20 sm:px-6 lg:px-10 lg:py-24">
-      <div className="grid gap-12 xl:grid-cols-[420px_1fr] xl:gap-16">
-        {/* Left Content */}
-        <div className="h-fit xl:sticky xl:top-24">
-          <div className="space-y-5">
-            <div className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-medium text-white">
-              <span className="h-2 w-2 bg-white" />
-              Investor
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl  font-medium tracking-tight">
-              Investors who read before
-              they allocate.
-            </h2>
-
-            <p className="max-w-lg text-sm sm:text-base lg:text-lg text-gray-500">
-              Early investors, in their own words. What they checked,
-              what convinced them, and what they tell their friends.
-            </p>
-          </div>
+    <section className="overflow-hidden py-6 lg:py-24">
+      {/* Mobile layout */}
+      <div className="md:hidden px-5 mb-10 space-y-5 flex flex-col items-center justify-center md:items-start md:justify-start text-center md:text-start">
+        <div className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-medium text-white">
+          <span className="h-2 w-2 bg-white" />
+          Investor
         </div>
+        <h2 className="text-3xl font-medium tracking-tight">
+          Investors who read before they allocate.
+        </h2>
+        <p className="text-sm text-gray-500">
+          Early investors, in their own words. What they checked,
+          what convinced them, and what they tell their friends.
+        </p>
+      </div>
+      <div className="md:hidden">
+        <HorizontalMarquee />
+      </div>
 
-        {/* All screens: vertical columns */}
-        <div className="grid h-175 lg:h-200 grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-          <MarqueeColumn />
-          <div className="hidden md:block">
-            <MarqueeColumn reverse />
+      {/* Desktop layout */}
+      <div className="hidden md:block px-6 lg:px-10">
+        <div className="grid gap-12 xl:grid-cols-[420px_1fr] xl:gap-16">
+          <div className="h-fit xl:sticky xl:top-24">
+            <div className="space-y-5">
+              <div className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-medium text-white">
+                <span className="h-2 w-2 bg-white" />
+                Investor
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-medium tracking-tight">
+                Investors who read before
+                they allocate.
+              </h2>
+              <p className="max-w-lg text-base lg:text-lg text-gray-500">
+                Early investors, in their own words. What they checked,
+                what convinced them, and what they tell their friends.
+              </p>
+            </div>
           </div>
-          <div className="hidden xl:block">
+          <div className="grid h-175 lg:h-200 grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
             <MarqueeColumn />
+            <div className="hidden md:block">
+              <MarqueeColumn reverse />
+            </div>
+            <div className="hidden xl:block">
+              <MarqueeColumn />
+            </div>
           </div>
         </div>
       </div>
