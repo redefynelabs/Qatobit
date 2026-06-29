@@ -41,6 +41,7 @@ const IndicesCharts = () => {
   const [monthlyInv, setMonthlyInv] = useState(2000);
   const [tenureYears, setTenureYears] = useState(5);
   const [compareId, setCompareId] = useState("bitcoin");
+  const [chartOverlay, setChartOverlay] = useState(false);
 
   const compareRate = useMemo(() => {
     const fundMatch = funds.find(f => f.id === compareId);
@@ -92,13 +93,17 @@ const IndicesCharts = () => {
       <div className="px-4 md:px-8 xl:px-12">
         {/* Fund selector cards */}
         <div className="mb-8">
-          {/* Mobile: horizontal scroll */}
-          <div className="flex lg:hidden gap-4 overflow-x-auto pb-2 -mx-4 px-4 md:-mx-8 md:px-8 xl:-mx-12 xl:px-12 scrollbar-hide">
-            {funds.map(f => (
-              <div key={f.id} className="shrink-0 w-72">
-                <FundCard fund={f} isActive={f.id === activeFund.id} onClick={() => setActiveFund(f)} />
-              </div>
-            ))}
+          {/* Mobile: dropdown */}
+          <div className="lg:hidden">
+            <select
+              value={activeFund.id}
+              onChange={e => setActiveFund(funds.find(f => f.id === e.target.value) ?? funds[0])}
+              className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              {funds.map(f => (
+                <option key={f.id} value={f.id}>{f.title}</option>
+              ))}
+            </select>
           </div>
           {/* Desktop: grid */}
           <div className="hidden lg:grid lg:grid-cols-4 gap-4">
@@ -121,7 +126,21 @@ const IndicesCharts = () => {
           />
 
           <div className="flex flex-col gap-4">
-            <GrowthChart data={chartData} fundName={activeFund.title} compareName={compareName} />
+            {/* Mobile: view graph button */}
+            <button
+              onClick={() => setChartOverlay(true)}
+              className="lg:hidden flex items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm font-medium text-neutral-700 shadow-sm active:bg-neutral-50"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+              View Growth Chart
+            </button>
+
+            {/* Desktop: inline chart */}
+            <div className="hidden lg:block">
+              <GrowthChart data={chartData} fundName={activeFund.title} compareName={compareName} />
+            </div>
 
             <StatsRow
               finalValue={finalValue}
@@ -152,6 +171,27 @@ const IndicesCharts = () => {
           Crypto investments are subject to market risk. Not investment advice. Past performance is not indicative of future results.
         </p>
       </div>
+
+      {/* Mobile chart overlay */}
+      {chartOverlay && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-white lg:hidden">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-100">
+            <span className="font-medium text-sm text-neutral-800">{activeFund.title} — Growth Chart</span>
+            <button
+              onClick={() => setChartOverlay(false)}
+              className="rounded-full p-2 text-neutral-500 hover:bg-neutral-100 active:bg-neutral-200"
+              aria-label="Close chart"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div className="flex-1 overflow-auto p-4">
+            <GrowthChart data={chartData} fundName={activeFund.title} compareName={compareName} compact />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

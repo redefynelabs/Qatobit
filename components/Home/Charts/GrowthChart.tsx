@@ -34,9 +34,11 @@ interface GrowthChartProps {
   data: ChartPoint[];
   fundName: string;
   compareName: string;
+  compact?: boolean;
 }
 
-const GrowthChart = ({ data, fundName, compareName }: GrowthChartProps) => {
+const GrowthChart = ({ data, fundName, compareName, compact }: GrowthChartProps) => {
+  const xInterval = compact ? Math.ceil(data.length / 5) - 1 : 0;
   return (
     <div className="border border-neutral-200 rounded-2xl p-4 md:p-6">
       {/* Legend — top right above chart */}
@@ -78,6 +80,7 @@ const GrowthChart = ({ data, fundName, compareName }: GrowthChartProps) => {
             tick={{ fontSize: 11, fill: "#9ca3af" }}
             axisLine={false}
             tickLine={false}
+            interval={xInterval}
           />
           <YAxis
             tickFormatter={v => formatINR(v)}
